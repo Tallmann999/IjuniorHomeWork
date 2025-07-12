@@ -3,14 +3,14 @@ using UnityEngine;
 public class SphereMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Transform _startPoint; 
-    [SerializeField] private Transform _endPoint;  
+    [SerializeField] private Transform _startPoint;
+    [SerializeField] private Transform _endPoint;
 
-    private bool isMovingForward = true;
+    private bool _isMovingForward = true;
 
     private void Update()
     {
-        if (isMovingForward)
+        if (_isMovingForward)
             MoveToEnd();
         else
             MoveToStart();
@@ -22,7 +22,7 @@ public class SphereMovement : MonoBehaviour
 
         if (transform.position == _endPoint.position)
         {
-            isMovingForward = false;
+            _isMovingForward = false;
         }
     }
 
@@ -32,7 +32,7 @@ public class SphereMovement : MonoBehaviour
 
         if (transform.position == _startPoint.position)
         {
-            isMovingForward = true;
+            _isMovingForward = true;
         }
     }
 }

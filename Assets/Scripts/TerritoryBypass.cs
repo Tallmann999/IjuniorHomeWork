@@ -1,15 +1,12 @@
 using UnityEngine;
 
-
 public class TerritoryBypass : MonoBehaviour
 {
-    // Четвертый – это куб, который движется в том направлении, в которое он смотрит,
-    // поворачивается по оси Y и растет в размере одновременно.
     [SerializeField] private Transform[] _points;
     [SerializeField] private float _speedMovement;
 
-    private int currentIndex; 
-    private Vector3 nextTarget; 
+    private int _currentIndex;
+    private Vector3 _nextTarget;
 
     void Start()
     {
@@ -19,12 +16,12 @@ public class TerritoryBypass : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, nextTarget, _speedMovement * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _nextTarget, _speedMovement * Time.deltaTime);
 
-        if (transform.position == nextTarget)
+        if (transform.position == _nextTarget)
         {
             SetNextTarget();
-            //transform.rotation = transform.LookAt(); здесь сделать поворот в сторону новой точки и расширение
+            transform.LookAt(_nextTarget);
         }
     }
 
@@ -32,11 +29,10 @@ public class TerritoryBypass : MonoBehaviour
     {
         do
         {
-            currentIndex = UnityEngine.Random.Range(0, _points.Length);
+            _currentIndex = UnityEngine.Random.Range(0, _points.Length);
         }
-        while (_points[currentIndex].position == nextTarget);
+        while (_points[_currentIndex].position == _nextTarget);
 
-        nextTarget = _points[currentIndex].position;
+        _nextTarget = _points[_currentIndex].position;
     }
-
 }

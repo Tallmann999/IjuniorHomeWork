@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class CapsuleExpantion : MonoBehaviour
+public class Expantion : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _maxScaleValue;
+
     private Vector3 _endExpansion; 
     private Vector3 _startExpansion;                        
-    private bool isExpanding = true;                         
+    private bool _isExpanding = true;                         
 
     private void Start()
     {
@@ -16,7 +17,7 @@ public class CapsuleExpantion : MonoBehaviour
 
     private void Update()
     {
-        if (isExpanding)
+        if (_isExpanding)
             Expand();                                        
         else
             Shrink();                                       
@@ -28,7 +29,7 @@ public class CapsuleExpantion : MonoBehaviour
 
         if (Vector3.Distance(transform.localScale, _endExpansion) < 0.01f)
         {
-            isExpanding = false;
+            _isExpanding = false;
         }
     }
 
@@ -38,7 +39,7 @@ public class CapsuleExpantion : MonoBehaviour
 
         if (Vector3.Distance(transform.localScale, _startExpansion) < 0.01f)
         {
-            isExpanding = true;                               
+            _isExpanding = true;                               
         }
     }
 }
